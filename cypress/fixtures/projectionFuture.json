@@ -1,0 +1,9 @@
+{
+    "patrimoineFluxImpossibles": {
+      "data": [
+        { "nom": "investmentA", "value": 5000 },
+        { "nom": "savingsAccountB", "value": 10000 }
+      ]
+    },
+    "patrimoineGraph": "base64imagestring"
+  }
