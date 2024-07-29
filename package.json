@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cypress/react": "^8.0.2",
     "axios": "^1.7.2",
     "openapi": "^1.0.1",
     "ra-data-json-server": "^5.0.5",
