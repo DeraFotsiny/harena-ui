@@ -5,12 +5,13 @@ import { Patrimoine } from '../../../src/providers/gen';
 
 describe('patrimoineProvider', () => {
   const resource = "patrimoines";
+  const apiUrl = Cypress.env('VITE_API_URL');
 
   context('getOne', () => {
     const nom = "testPatrimoine";
 
     it('should get one patrimoine by nom', () => {
-      cy.intercept('GET', `/patrimoines/${nom}`, {
+      cy.intercept('GET', `${apiUrl}/patrimoines/${nom}`, {
         statusCode: 200,
         body: { nom: "testPatrimoine", valeur_comptable: 1000 }
       }).as('getPatrimoine');
@@ -23,7 +24,7 @@ describe('patrimoineProvider', () => {
     });
 
     it('should handle errors', () => {
-      cy.intercept('GET', `/patrimoines/${nom}`, {
+      cy.intercept('GET', `${apiUrl}/patrimoines/${nom}`, {
         statusCode: 500
       }).as('getPatrimoineError');
 
@@ -39,7 +40,7 @@ describe('patrimoineProvider', () => {
     const pageSize = 10;
 
     it('should get a list of patrimoines', () => {
-      cy.intercept('GET', `/patrimoines?page=${page}&page_size=${pageSize}`, {
+      cy.intercept('GET', `${apiUrl}/patrimoines?page=${page}&page_size=${pageSize}`, {
         statusCode: 200,
         body: { data: [{ nom: "patrimoine1", valeur_comptable: 1000 }, { nom: "patrimoine2", valeur_comptable: 2000 }] }
       }).as('getPatrimoines');
@@ -52,7 +53,7 @@ describe('patrimoineProvider', () => {
     });
 
     it('should handle errors', () => {
-      cy.intercept('GET', `/patrimoines?page=${page}&page_size=${pageSize}`, {
+      cy.intercept('GET', `${apiUrl}/patrimoines?page=${page}&page_size=${pageSize}`, {
         statusCode: 500
       }).as('getPatrimoinesError');
 
@@ -67,7 +68,7 @@ describe('patrimoineProvider', () => {
     const payload: Patrimoine = { nom: "newPatrimoine", valeur_comptable: 3000 };
 
     it('should save or update a patrimoine', () => {
-      cy.intercept('POST', `/patrimoines`, {
+      cy.intercept('POST', `${apiUrl}/patrimoines`, {
         statusCode: 200,
         body: { data: [{ nom: "newPatrimoine", valeur_comptable: 3000 }] }
       }).as('saveOrUpdatePatrimoine');
@@ -80,7 +81,7 @@ describe('patrimoineProvider', () => {
     });
 
     it('should handle errors', () => {
-      cy.intercept('POST', `/patrimoines`, {
+      cy.intercept('POST', `${apiUrl}/patrimoines`, {
         statusCode: 500
       }).as('saveOrUpdatePatrimoineError');
 
