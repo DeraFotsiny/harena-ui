@@ -19,8 +19,8 @@ describe('PatrimoineList Component', () => {
 
   it('should render the PatrimoineList correctly', () => {
     cy.wait('@getPatrimoineList');
-    cy.get('.MuiDataGrid-root').should('exist'); // Vérifie que le Datagrid est rendu
-    cy.get('.MuiDataGrid-row').should('have.length', 2); // Vérifie qu'il y a deux lignes de données
+    cy.get('.MuiDataGrid-root').should('exist');
+    cy.get('.MuiDataGrid-row').should('have.length', 2);
   });
 
   it('should display the correct fields in PatrimoineList', () => {
