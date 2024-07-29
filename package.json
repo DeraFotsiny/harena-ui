@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@cypress/webpack-preprocessor": "^6.0.2",
+    "cypress-dotenv": "^2.0.0",
     "openapi": "^1.0.1",
     "ra-data-json-server": "^5.0.5",
     "react": "^18.3.1",
