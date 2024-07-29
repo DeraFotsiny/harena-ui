@@ -1,12 +1,14 @@
 /// <reference types="cypress" />
-import PossessionProvider  from '../../../src/providers/possessionProvider';
+import PossessionProvider from '../../../src/providers/possessionProvider';
+
 describe('PossessionProvider getOne', () => {
     const resource = "possessions";
     const nomPatrimoine = "testPatrimoine";
     const nomPossession = "testPossession";
+    const apiUrl = Cypress.env('VITE_API_URL');
 
     it('should get a single possession', () => {
-        cy.intercept('GET', `/patrimoines/${nomPatrimoine}/possessions/${nomPossession}`, {
+        cy.intercept('GET', `${apiUrl}/patrimoines/${nomPatrimoine}/possessions/${nomPossession}`, {
             statusCode: 200,
             body: {
                 nom: nomPossession,
@@ -22,7 +24,7 @@ describe('PossessionProvider getOne', () => {
     });
 
     it('should handle errors', () => {
-        cy.intercept('GET', `/patrimoines/${nomPatrimoine}/possessions/${nomPossession}`, {
+        cy.intercept('GET', `${apiUrl}/patrimoines/${nomPatrimoine}/possessions/${nomPossession}`, {
             statusCode: 404
         }).as('getPossessionError');
 

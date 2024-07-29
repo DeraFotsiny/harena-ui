@@ -1,14 +1,16 @@
 /// <reference types="cypress" />
-import PossessionProvider  from '../../../src/providers/possessionProvider';
+import PossessionProvider from '../../../src/providers/possessionProvider';
+
 describe('PossessionProvider save or Update', () => {
     const resource = "possessions";
     const nomPatrimoine = "testPatrimoine";
     const page = 1;
     const pageSize = 10;
     const payload = { type: "ARGENT", argent: { nom: "newPossession", valeur_comptable: 3000 } };
+    const apiUrl = Cypress.env('VITE_API_URL');
 
     it('should save or update a possession', () => {
-        cy.intercept('PUT', `/patrimoines/${nomPatrimoine}/possessions?page=${page}&page_size=${pageSize}`, {
+        cy.intercept('PUT', `${apiUrl}/patrimoines/${nomPatrimoine}/possessions?page=${page}&page_size=${pageSize}`, {
             statusCode: 200,
             body: {
                 data: [payload]
@@ -24,7 +26,7 @@ describe('PossessionProvider save or Update', () => {
     });
 
     it('should handle errors', () => {
-        cy.intercept('PUT', `/patrimoines/${nomPatrimoine}/possessions?page=${page}&page_size=${pageSize}`, {
+        cy.intercept('PUT', `${apiUrl}/patrimoines/${nomPatrimoine}/possessions?page=${page}&page_size=${pageSize}`, {
             statusCode: 500
         }).as('saveOrUpdatePossessionError');
 

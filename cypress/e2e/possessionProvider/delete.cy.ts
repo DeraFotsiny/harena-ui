@@ -1,12 +1,14 @@
 /// <reference types="cypress" />
-import PossessionProvider  from '../../../src/providers/possessionProvider';
+import PossessionProvider from '../../../src/providers/possessionProvider';
+
 describe('PossessionProvider delete', () => {
     const resource = "possessions";
     const nomPatrimoine = "testPatrimoine";
     const nomPossession = "testPossession";
+    const apiUrl = Cypress.env('VITE_API_URL');
 
     it('should delete a possession', () => {
-        cy.intercept('DELETE', `/patrimoines/${nomPatrimoine}/possessions/${nomPossession}`, {
+        cy.intercept('DELETE', `${apiUrl}/patrimoines/${nomPatrimoine}/possessions/${nomPossession}`, {
             statusCode: 204
         }).as('deletePossession');
 
@@ -18,7 +20,7 @@ describe('PossessionProvider delete', () => {
     });
 
     it('should handle errors', () => {
-        cy.intercept('DELETE', `/patrimoines/${nomPatrimoine}/possessions/${nomPossession}`, {
+        cy.intercept('DELETE', `${apiUrl}/patrimoines/${nomPatrimoine}/possessions/${nomPossession}`, {
             statusCode: 500
         }).as('deletePossessionError');
 
