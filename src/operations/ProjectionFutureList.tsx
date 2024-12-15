@@ -52,7 +52,7 @@ const ProjectionFutureList = (props: any) => (
       <DateField source="date" label="Date" />
       <NumberField source="valeur_argent" label="Valeur Argent" />
       {useRecordContext && (
-        useRecordContext()?.flux_argents && 
+        useRecordContext()?.flux_argents &&
         useRecordContext()?.flux_argents.map((fluxArgent: any, index: number) => (
           <FluxArgentField key={index} record={fluxArgent} />
         ))

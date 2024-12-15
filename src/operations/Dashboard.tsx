@@ -48,8 +48,11 @@ const Dashboard = () => {
                     }}
                 />
                 <Button onClick={() => setLoading(true)} disabled={!endDate}>
-                    Fetch Graph
+                    Make Graph
                 </Button>
+                {!endDate && (
+                    <p style={{ color: 'red' }}>Please select an end date to display the graph...</p>
+                )}
                 {loading ? (
                     <p>Loading...</p>
                 ) : imageSrc ? (
